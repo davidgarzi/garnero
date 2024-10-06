@@ -4,6 +4,28 @@
 
 
 $(document).ready(function () {
+
+    richiestaAPIMomentanea();
+
+    // Richiesta API momentanea
+    function richiestaAPIMomentanea() {
+        let rq = inviaRichiesta("POST", "/api/prendiIrrigazioneAutomatica")
+        rq.then(async function (response) {
+            console.log(response.data);
+        })
+        rq.catch(function (err) {
+            if (err.response.status == 401) {
+                _lblErrore.show();
+            }
+            else
+                errore(err);
+        })
+    }
+
+
+
+
+
     let filtro2Value = $('#filtro2');
     let filtro3Value = $('#filtro3');
     let filtro4Value = $('#filtro4');
