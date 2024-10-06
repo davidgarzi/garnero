@@ -1,0 +1,152 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  padding-right: 0 !important;
+  padding-top: 57px;
+  width: 100dvw;
+  min-height: 100dvh;
+  overflow-y: hidden;
+  display: flex;
+  position: relative;
+  margin: 0;
+  /* background-image: url('img/forest.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.videofullscreen {
+  display: fixed;
+  position: fixed;
+  bottom: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  z-index: -100;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+}
+
+.navb {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1000;
+}
+
+nav {
+  background-color: #f0f4e7;
+  height: 70px;
+  position: fixed;
+  border-bottom: 2px solid #d7dbd1;
+  top: 0;
+}
+
+.nav-link{
+  color: rgb(111, 111, 111)!important;
+}
+
+.nav-link:hover{
+  color: rgb(0, 0, 0)!important;
+}
+
+.bg-green {
+  background-color: #e0e0e0;
+}
+
+.container {
+  margin: auto; 
+  background-color: #f0f4e7;
+  text-align: center;
+  border: 1px solid red;
+}
+
+.colonna-filtri {
+  height: 100vh; /* Altezza dell'intera finestra */
+  overflow-y: auto; /* Aggiunge uno scroll se necessario */
+  border: 2px solid #d7dbd1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra */
+  position: unset;
+  text-align: left;
+}
+
+.div{
+  display: inline-block;
+  border-radius: 15px;
+  background-color: rgb(109, 137, 102);
+  height: 100%;
+  width: 95%;
+  margin: 2%;
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra */
+}
+
+#filtri { 
+  height: 300px;
+  background-color: #f0f4e7;
+  border: 1px solid #d7dbd1;
+}
+#list{
+  height: 300px;
+  background-color: #f0f4e7;
+  border: 1px solid #d7dbd1;
+}
+
+.suggestions {
+  border: 1px solid #ccc;
+  background: white;
+  position: absolute;
+  z-index: 1500;
+  width:fit-content;
+  position: absolute;
+}
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+.suggestion-item:hover {
+  background: #f0f0f0;
+}
+
+@media screen and (max-width: 991px) {
+  .navbar {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .navbar-toggler-icon {
+    font-size: 2.5rem;
+  }
+
+  body {
+    padding-top: 87px;
+  }
+
+  .container 
+  {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-width: none; 
+    height: 100%;
+    margin-bottom: 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  body {
+    overflow-y: scroll;
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ForniTrack</title>
+  <meta charset="UTF-8">
+  <link rel="icon" href="favicon.ico" type="image/png" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./libreria.js"></script>
+  <script src="./index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-green navb">
+    <a class="navbar-brand" id="logo" style="color: rgb(161 161 161); font-weight: bold;">ForniTrack</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav" style="overflow: hidden;">
+        <li class="nav-item active home">
+          <a class="nav-link monitora">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" style="min-width: 97px;">
+          <a class="nav-link addArticolo">Aggiungi</a>
+        </li>
+        <li class="nav-item" style="min-width: 97px;">
+          <a class="nav-link modificaProcessi">Processi</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Contenuto principale -->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Colonna di sinistra (Filtri) -->
+      <div class="col-md-3 bg-light p-4 colonna-filtri">
+        <h4>Filtra</h4>
+        <form id="filterForm">
+          <div class="mb-3">
+            <label for="filtro1" class="form-label">Cerca per titolo/ean/codice ready</label>
+            <input type="text" class="form-control" id="filtro1" placeholder="Inserisci un valore" autocomplete="off">
+            <div id="suggestions" class="suggestions" style="display: none;"></div>
+          </div>
+          <div class="mb-3">
+            <label for="filtro2" class="form-label">Fornitore: </label>
+            <select class="form-select" id="filtro2">
+              <option value="0" selected>Scegli una opzione</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="filtro3" class="form-label">Marca: </label>
+            <select class="form-select" id="filtro3">
+              <option value="0" selected>Scegli una opzione</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="filtro4" class="form-label">Filtro 3</label>
+            <input type="range" class="form-range" id="filtro4">
+          </div>
+          <button type="reset" class="btn btn-primary m-1">Reset Filtri</button>
+          <button type="submit" class="btn btn-primary m-1">Applica Filtri</button>
+        </form>
+      </div>
+
+      <!-- Colonna di destra (Visualizzazione Dati) -->
+      <div class="col-md-9 p-4">
+        <div class="card mb-3">
+          <div class="card-title pt-3 text-muted">Chat GPT filter integration coming soon</div>
+        </div>
+        <h4>Visualizzazione Dati</h4>
+        <div class="card">
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
