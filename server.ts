@@ -91,14 +91,14 @@ app.use("/", (req: any, res: any, next: any) => {
     next();
 });
 
-// 6. Controllo degli accessi tramite CORS
-const corsOptions = {
-    origin: function (origin, callback) {
-        return callback(null, true);
-    },
-    credentials: true
-};
-app.use("/", _cors(corsOptions));
+// // 6. Controllo degli accessi tramite CORS
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         return callback(null, true);
+//     },
+//     credentials: true
+// };
+// app.use("/", _cors(corsOptions));
 
 app.post("/api/login", async (req, res, next) => {
     let username = req["body"].username;
