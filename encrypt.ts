@@ -4,10 +4,10 @@ import { MongoClient, ObjectId } from "mongodb";
 import _dotenv from "dotenv";
 _dotenv.config({ path: ".env" });
 
-const CONNECTION_STRING: string = process.env.CONNECTION_STRING;
 const DBNAME = process.env.DBNAME;
+const connectionString: string = process.env.connectionStringAtlas;
 
-const client = new MongoClient(CONNECTION_STRING);
+const client = new MongoClient(connectionString);
 let promise = client.connect();
 promise.then(() => {
     let collection = client.db(DBNAME).collection("utenti");

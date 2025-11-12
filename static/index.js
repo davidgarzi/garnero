@@ -2,117 +2,39 @@
 //https://uiverse.io/
 //https://newsapi.org/
 
+//differenzio accessi di utenti
+//fare tabelle iniziamo con i pop faccio elenco un pop per riga e al click mi fa vedere i
+//dettagli del pop aprendo un div sotto con lista clienti pk le vlan le metto nella riga
+//metto quidni pulsante dettagli e + sia per i pop che per i clienti
 
 $(document).ready(function () {
 
-    richiestaAPIMomentanea();
 
-    // Richiesta API momentanea
-    function richiestaAPIMomentanea() {
-        let rq = inviaRichiesta("POST", "/api/prendiIrrigazioneAutomatica")
-        rq.then(async function (response) {
-            console.log(response.data);
-        })
-        rq.catch(function (err) {
-            if (err.response.status == 401) {
-                _lblErrore.show();
-            }
-            else
-                errore(err);
-        })
+  $('.dropdown').hover(
+    function () {
+      $(this).find('.dropdown-menu').addClass('show');
+    },
+    function () {
+      $(this).find('.dropdown-menu').removeClass('show');
     }
+  );
 
+  richiestaMomentanea();
 
-
-
-
-    let filtro2Value = $('#filtro2');
-    let filtro3Value = $('#filtro3');
-    let filtro4Value = $('#filtro4');
-
-    const fornitori = [
-        { id: 1, nome: 'Fornitore A' },
-        { id: 2, nome: 'Fornitore B' },
-        { id: 3, nome: 'Fornitore C' }
-    ];
-
-    const marche = [
-        { id: 1, nome: 'Marca A' },
-        { id: 2, nome: 'Marca B' },
-        { id: 3, nome: 'Marca C' }
-    ];
-
-    // Carica fornitori nella select
-    fornitori.forEach(fornitore => {
-        $('#filtro2').append(`<option value="${fornitore.id}">${fornitore.nome}</option>`);
+  //richiesta dati momentanei
+  function richiestaMomentanea() {
+    let request = inviaRichiesta('GET', '/api/momento');
+    request.catch(function (err) {
+      console.log(err.response.status)
+      if (err.response.status == 401) {
+        console.log(err.response.data);
+      }
+      else {
+        errore(err);
+      }
     });
-
-    // Carica marche nella select
-    marche.forEach(marca => {
-        $('#filtro3').append(`<option value="${marca.id}">${marca.nome}</option>`);
-    });
-
-    const suggestionsData = [
-        'Titolo 1',
-        'Titolo 2',
-        'EAN123456',
-        'CodiceReady1',
-        'CodiceReady2',
-        'Supercalifragilistichespiralidoso Supercalifragilistichespiralidoso',
-        'Marca A',
-        'Marca B',
-    ];
-
-    function showSuggestions(value) {
-        const filteredSuggestions = suggestionsData.filter(suggestion =>
-            suggestion.toLowerCase().includes(value.toLowerCase())
-        );
-
-        $('#suggestions').empty(); // Pulisci i suggerimenti precedenti
-
-        if (filteredSuggestions.length > 0) {
-            filteredSuggestions.forEach(suggestion => {
-                $('#suggestions').append(`<div class="suggestion-item">${suggestion}</div>`);
-            });
-            $('#suggestions').show(); // Mostra i suggerimenti
-        } else {
-            $('#suggestions').hide(); // Nasconde se non ci sono suggerimenti
-        }
-    }
-
-    // Utilizza l'evento 'input' per cercare i suggerimenti mentre si digita
-    $('#filtro1').on('input', function () {
-        const value = $(this).val();
-        if (value.length > 0) {
-            showSuggestions(value);
-        } else {
-            $('#suggestions').hide(); // Nasconde se l'input è vuoto
-        }
-    });
-
-    // Gestisci il clic sui suggerimenti
-    $(document).on('click', '.suggestion-item', function () {
-        $('#filtro1').val($(this).text()); // Imposta il valore dell'input
-        $('#suggestions').hide(); // Nasconde i suggerimenti
-    });
-
-    // Gestione del submit
-    $('#filterForm').on('submit', function (event) {
-        event.preventDefault();
-
-        // Ottieni i valori dei filtri
-        filtro2Value = $('#filtro2').val();
-        filtro3Value = $('#filtro3').val();
-        filtro4Value = $('#filtro4').val();
-
-        // Crea un oggetto con i valori dei filtri
-        const filters = {
-            fornitore: filtro2Value,
-            marca: filtro3Value,
-            filtro3: filtro4Value,
-        };
-
-        // Esegui azioni con i dati
-        console.log('Filtri applicati:', filters);
-    });
+    request.then((response) => {
+      console.log(response);
+    })
+  }
 });

@@ -5,7 +5,6 @@ $(document).ready(function () {
 
 	_lblErrore.hide();
 
-
 	$("#btnLogin").on("click", controllaLogin)
 
 	$("#btnGoogle").on("click", loginGoogle)
@@ -16,7 +15,6 @@ $(document).ready(function () {
 		if (event.keyCode == 13)
 			controllaLogin();
 	});
-
 
 	function loginGoogle() {
 		/*global google*/

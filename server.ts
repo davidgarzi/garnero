@@ -107,7 +107,7 @@ app.post("/api/login", async (req, res, next) => {
 
     const client = new MongoClient(connectionString);
     await client.connect();
-    const collection = client.db(DBNAME).collection("utenti");
+    const collection = client.db(DBNAME).collection("login");
     let regex = new RegExp(`^${username}$`, "i");
     let rq = collection.findOne({ "username": regex }, { "projection": { "username": 1, "password": 1 } });
     rq.then((dbUser) => {
@@ -431,6 +431,10 @@ app.get("/api/getNews", async (req, res, next) => {
         console.error(`Errore durante la richiesta GET:`);
         res.status(500).send(`Errore durante la richiesta GET:`);
     });
+});
+
+app.get("/api/momento", async (req, res, next) => {
+    res.send("ok");
 });
 
 app.get("/api/meteoSettimana", async (req, res, next) => {

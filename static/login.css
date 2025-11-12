@@ -35,7 +35,7 @@ body {
 	content: "";
 	width: 300px;
 	height: 300px;
-	background-color: rgb(209, 225, 204);				/*questo */
+	background-color: #ff0f64;
 	transform: rotate(45deg);
 	left: -180px;
 	bottom: 30px;
@@ -71,7 +71,7 @@ body {
 	height: 30px;
 	background-color: transparent;
 	border: none;
-	border-bottom: 2px solid rgb(173, 173, 173);
+	border-bottom: 2px solid #ad003d;
 	margin: 10px 0;
 	color: black;
 	font-size: .8em;
@@ -82,21 +82,22 @@ body {
 
 .inputField:focus {
 	outline: none;
-	border-bottom: 2px solid rgb(141, 169, 133);
+	border-bottom: 2px solid #ad003d;
 }
 
 .inputField::placeholder {
-	color: rgb(80, 80, 80);
+	color: #ad003d;
 	font-size: 1em;
 	font-weight: 500;
 }
 
 #btnLogin {
+	border-radius: 3px;
 	z-index: 2;
 	position: relative;
 	width: 100%;
 	border: none;
-	background-color: rgb(141, 169, 133);
+	background-color: #ad003d;
 	height: 30px;
 	color: white;
 	font-size: .8em;
@@ -107,17 +108,7 @@ body {
 }
 
 #btnLogin:hover {
-	background-color: rgb(102, 131, 94);
-}
-
-.forgotLink {
-	z-index: 2;
-	font-size: .7em;
-	font-weight: 500;
-	color: rgb(141, 169, 133);
-	text-decoration: none;
-	padding: 8px 15px;
-	border-radius: 20px;
+	background-color: #ad003d;
 }
 
 video {
