@@ -8,10 +8,7 @@ import _fileUpload from "express-fileupload";
 import _streamifier from "streamifier";
 import _bcrypt from "bcryptjs";
 import _jwt from "jsonwebtoken";
-import { Server, Socket } from "socket.io";
-import OpenAI from "openai";
 import axios from 'axios';
-const _nodemailer = require("nodemailer");
 
 // Lettura delle password e parametri fondamentali
 _dotenv.config({ "path": ".env" });
