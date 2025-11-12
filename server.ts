@@ -77,6 +77,85 @@ app.use("/", (req: any, res: any, next: any) => {
 });
 
 //********************************************************************************************//
+// Inizio codice specifico delle API Telegram Bot
+//********************************************************************************************//
+
+// URL base API Telegram
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
+
+// Funzione per inviare un messaggio Telegram
+async function sendTelegramMessage(chatId: string, text: string) {
+    try {
+        const res = await axios.post(`${TELEGRAM_API}/sendMessage`, {
+            chat_id: chatId,
+            text
+        });
+        console.log("Messaggio Telegram inviato:", res.data);
+    } catch (err: any) {
+        console.error("Errore invio Telegram:", err.response?.data || err.message);
+    }
+}
+
+// Funzione per gestire i messaggi in arrivo da Telegram (via webhook)
+async function handleTelegramUpdate(update: any) {
+    if (!update.message) return;
+
+    const chatId = update.message.chat.id;
+    const text = update.message.text;
+    console.log(`📩 Messaggio da ${chatId}: ${text}`);
+
+    // Esempio semplice di risposta automatica
+    if (text === "/start") {
+        await sendTelegramMessage(chatId, "👋 Ciao! Sono il tuo bot Telegram collegato al server Node.js.");
+    } else if (text.toLowerCase().includes("ciao")) {
+        await sendTelegramMessage(chatId, "Ciao anche a te! 😊");
+    } else {
+        await sendTelegramMessage(chatId, `Hai scritto: ${text}`);
+    }
+}
+
+// Endpoint Webhook — riceve aggiornamenti da Telegram
+app.post("/telegram/webhook", async (req: any, res: any) => {
+    try {
+        const update = req.body;
+        await handleTelegramUpdate(update);
+        res.send("ok");
+    } catch (err) {
+        console.error("Errore webhook Telegram:", err);
+        res.status(500).send("Errore server webhook");
+    }
+});
+
+// Endpoint per inviare messaggi manualmente via HTTP (utile per test)
+app.get("/api/telegram/send", async (req: any, res: any) => {
+    const chatId = req.query.chat_id;
+    const msg = req.query.msg;
+
+    if (!chatId || !msg) {
+        return res.status(400).send("Parametri mancanti: chat_id e msg obbligatori");
+    }
+
+    await sendTelegramMessage(chatId, msg);
+    res.send(`✅ Messaggio inviato a ${chatId}`);
+});
+
+// Endpoint per controllare lo stato del webhook (debug)
+app.get("/api/telegram/info", async (req: any, res: any) => {
+    try {
+        const result = await axios.get(`${TELEGRAM_API}/getWebhookInfo`);
+        res.send(result.data);
+    } catch (err: any) {
+        res.status(500).send(err.response?.data || err.message);
+    }
+});
+
+//********************************************************************************************//
+// Fine codice Telegram Bot
+//********************************************************************************************//
+
+
+//********************************************************************************************//
 // Default route e gestione degli errori
 //********************************************************************************************//
 
